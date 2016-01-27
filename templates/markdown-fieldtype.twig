@@ -1,4 +1,4 @@
-<textarea name="{{ name }}" id="{{ id }}" cols="30" rows="10" class="house--ta">{{ value.raw|raw }}</textarea>
+<textarea name="{{ name }}" id="{{ id }}" cols="30" rows="10" class="house--ta">{{ value }}</textarea>
 
 <div id="{{ id }}-help" class="house--help-content">
 	<div class="header">
@@ -8,12 +8,21 @@
 	<div class="body">
 		{# References #}
 		<h2>References</h2>
-		<p>To add a reference to your text type <code>{</code>, an auto-complete menu will appear letting you select what type of reference you want to insert. This will then open a modal that will let you select your the element(s) you want to reference.</p>
+		<p>To add a reference to your text type <code>{</code>, an auto-complete menu will appear letting you select
+			what type of reference you want to insert. This will then open a modal that will let you select your the
+			element(s) you want to reference.</p>
 		<img src="{{ resourceUrl('markdown/imgs/reference-auto-complete.jpg') }}" alt="Reference Auto-complete">
+
+		{# Pagination #}
+		<h2>Pagination</h2>
+		<p>You can split up your markdown into separate pages by using <code>{pagebreak}</code> where ever you want to
+			add a new page. You can find out more about pagination
+			<a href="https://craftcms.com/docs/rich-text-fields#getPages" target="_blank">here</a>.</p>
 
 		{# Headings #}
 		<h2>Headings</h2>
-		<p>You can use up to up to six levels <code>by writing # before</code> a heading; the number of hashes defines the hierarchy of the heading. Don't forget to add a space after the #:</p>
+		<p>You can use up to up to six levels <code>by writing # before</code> a heading; the number of hashes defines
+			the hierarchy of the heading. Don't forget to add a space after the #:</p>
 
 		<pre><code># First level heading
 ## Second level heading
@@ -21,7 +30,8 @@
 
 		{# Emphasis & Importance #}
 		<h2>Emphasis and Importance</h2>
-		<p>Emphasis ("italics") and important ("bold") are written by putting * or _ around the text you want to see in a different format.</p>
+		<p>Emphasis ("italics") and important ("bold") are written by putting * or _ around the text you want to see
+			in a different format.</p>
 
 		<ul>
 			<li>Emphasis: <code>*example*</code> or <code>_example_</code></li>
@@ -31,7 +41,8 @@
 
 		{# Numbered Lists #}
 		<h2>Numbered Lists</h2>
-		<p>Type <code>1.</code> then a space. Any number (followed by a full stop and space) can be used and the list items will be ordered from 1 when displayed.</p>
+		<p>Type <code>1.</code> then a space. Any number (followed by a full stop and space) can be used and the list
+			items will be ordered from 1 when displayed.</p>
 
 		<pre><code>1. Ordered list item
 2. Ordered list item
@@ -39,7 +50,8 @@
 
 		{# Bulleted Lists #}
 		<h2>Bulleted lists</h2>
-		<p>Type <code>*</code>, <code>-</code> or <code>+</code> then a space. Create a bulleted list by using an asterisk (*), hyphen (-), or plus sign (+), followed by a space.</p>
+		<p>Type <code>*</code>, <code>-</code> or <code>+</code> then a space. Create a bulleted list by using an
+			asterisk (*), hyphen (-), or plus sign (+), followed by a space.</p>
 
 		<pre><code>* Bulleted list item
 * Bulleted list item
@@ -64,11 +76,13 @@
 
 		{# Links #}
 		<h2>Links</h2>
-		<p>Create a link by surrounding the link text in square brackets, followed immediately by the URL in parentheses:</p>
+		<p>Create a link by surrounding the link text in square brackets, followed immediately by the URL in
+			parentheses:</p>
 
 		<pre><code>[text to link](http://example.com/)</code></pre>
 
-		<p>You can also use reference links. Add the reference in square brackets after the text to link. Then, on a line by itself add the reference with a colon, space, and the URL:</p>
+		<p>You can also use reference links. Add the reference in square brackets after the text to link. Then, on a
+			line by itself add the reference with a colon, space, and the URL:</p>
 
 		<pre><code>[text to link][ref]
 …
@@ -76,7 +90,8 @@
 
 		{# Images #}
 		<h2>Images</h2>
-		<p>Create an image by typing an <code>!</code> followed by the images alt text surrounded by square brackets, and the URL and title (in quotation marks) of the image in parentheses after that:</p>
+		<p>Create an image by typing an <code>!</code> followed by the images alt text surrounded by square brackets,
+			and the URL and title (in quotation marks) of the image in parentheses after that:</p>
 
 		<pre><code>![image alt text]({asset:135} "Image title")</code></pre>
 
@@ -88,14 +103,18 @@
 
 		{# Code #}
 		<h2>Code</h2>
-		<p>You can mark up code in-line using backticks (<code>`code`</code>), or add a code block by adding at least four spaces to the start of a line:</p>
+		<p>You can mark up code in-line using backticks (<code>`code`</code>), or add a code block by adding at least
+			four spaces to the start of a line:</p>
 
 		<pre><code>    This is a code block</code></pre>
 
-		<p>It's also possible to start a code block with a tab, as long as the text doesn’t start with list, header or blockquote syntax characters (<code>1.</code>, <code>*</code>, <code>-</code>, <code>+</code>, <code>#</code>, <code>></code>).</p>
+		<p>It's also possible to start a code block with a tab, as long as the text doesn’t start with list, header or
+			blockquote syntax characters (<code>1.</code>, <code>*</code>, <code>-</code>, <code>+</code>, <code>#</code>, <code>></code>).</p>
 
-		<p>In addition, you can use Fenced code blocks, which begin and end with triple backticks, and don’t need indenting. Note that inline formatting (like <code>_underscores_</code>) is ignored in code.</p>
-		<p>If you are using a syntax highlighter, you can specifiy the language by name immediately after the opening three backticks.</p>
+		<p>In addition, you can use Fenced code blocks, which begin and end with triple backticks, and don’t need
+			indenting. Note that inline formatting (like <code>_underscores_</code>) is ignored in code.</p>
+		<p>If you are using a syntax highlighter, you can specifiy the language by name immediately after the opening
+			three backticks.</p>
 
 		<pre><code>```javascript
 var myVariable = 12;
@@ -103,7 +122,8 @@ var myVariable = 12;
 
 		{# Footnotes #}
 		<h2>Footnotes</h2>
-		<p>Add a footnote in square brackets preceded by a caret. Then add the footnote content like a reference link, for example:</p>
+		<p>Add a footnote in square brackets preceded by a caret. Then add the footnote content like a reference link,
+			for example:</p>
 
 		<pre><code>Some text[^footRef] with a footnote[^1].
 …
@@ -116,7 +136,8 @@ var myVariable = 12;
 
 		{# Tables #}
 		<h2>Tables</h2>
-		<p>To make a table, use vertical bar characters to denote cells. Start with column headers, separate with a row of cells with hyphens, then add further rows of cells. For example:</p>
+		<p>To make a table, use vertical bar characters to denote cells. Start with column headers, separate with a
+			row of cells with hyphens, then add further rows of cells. For example:</p>
 
 		<pre><code>|Header |Column 1 | Column 2 | Column 3  |
 | ----- |:------- |:--------:| ---------:|
@@ -126,7 +147,9 @@ var myVariable = 12;
 
 		{# Horizontal rules #}
 		<h2>Horizontal rules</h2>
-		<p>You can add a thematic break which will be represented by a dividing line (<code>&lt;hr></code>) when exported to HTML. To do so, add three or more asterisks (<code>*</code>), hyphens (<code>-</code>), or underscores (<code>_</code>) on a line by themselves, optionally separated with spaces. For example:</p>
+		<p>You can add a thematic break which will be represented by a dividing line (<code>&lt;hr></code>) when
+			exported to HTML. To do so, add three or more asterisks (<code>*</code>), hyphens (<code>-</code>), or
+			underscores (<code>_</code>) on a line by themselves, optionally separated with spaces. For example:</p>
 
 		<pre><code>* * *</code></pre>
 
@@ -136,15 +159,19 @@ var myVariable = 12;
 
 		{# Escaping #}
 		<h2>"Escaping" formatting characters</h2>
-		<p>If you want to type a formatting character and have Writer treat it as text not formatting, type a backslash first <code>\</code>. This means <code>\*</code> gives <code>*</code>, <code>\_</code> gives <code>_</code> etc. Escaping isn't needed in code blocks.</p>
+		<p>If you want to type a formatting character and have Writer treat it as text not formatting, type a backslash
+			first <code>\</code>. This means <code>\*</code> gives <code>*</code>, <code>\_</code> gives <code>_</code>
+			etc. Escaping isn't needed in code blocks.</p>
 
 		{# HTML #}
 		<h2>HTML</h2>
-		<p>You can insert any HTML into your markdown and it will be parsed as normal. This is useful if you need to insert an embed like a video, gist, etc.</p>
+		<p>You can insert any HTML into your markdown and it will be parsed as normal. This is useful if you need to
+			insert an embed like a video, gist, etc.</p>
 
 		{# Markdown Extra #}
 		<h2>Markdown Extra</h2>
-		<p><a href="https://michelf.ca/projects/php-markdown/extra/" target="_blank">Markdown Extra</a> is also supported, and contains extended functionality that isn't listed here.</p>
+		<p><a href="https://michelf.ca/projects/php-markdown/extra/" target="_blank">Markdown Extra</a> is also
+			supported, and contains extended functionality that isn't listed here.</p>
 	</div>
 
 	<div class="footer">

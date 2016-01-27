@@ -44,9 +44,11 @@
 }
 
 .house--help-btn {
-	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
 
-	color: #e3e5e8;
+	color: #c7c8cb;
 
 	background: #ffffff;
 	border: none;
@@ -159,7 +161,7 @@
 
 .CodeMirror-hints {
 	position: absolute;
-	z-index: 10;
+	z-index: 100;
 	overflow: hidden;
 	list-style: none;
 
@@ -190,6 +192,10 @@
 	white-space: pre;
 	color: black;
 	cursor: pointer;
+}
+
+.CodeMirror-hint:last-child {
+	text-transform: none;
 }
 
 li.CodeMirror-hint-active {

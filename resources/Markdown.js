@@ -47,8 +47,14 @@ if ( (!('innerText' in document.createElement('a'))) && ('getSelection' in windo
 
 	CodeMirror.registerHelper("hint", "markdown", function(editor, options) {
 		var cur = editor.getCursor();
-		var ret = {list: ['entry','asset','user','tag','category'], from: CodeMirror.Pos(cur.line, cur.ch), to: CodeMirror.Pos(cur.line, cur.ch)};
+		var ret = {list: ['entry','asset','user','tag','category','pagebreak'], from: CodeMirror.Pos(cur.line, cur.ch), to: CodeMirror.Pos(cur.line, cur.ch)};
 		CodeMirror.on(ret, "pick", function(picked) {
+			if (picked === 'pagebreak') {
+				var c = editor.getCursor();
+				editor.setCursor(c.line, c.ch + 1);
+				return;
+			}
+
 			Markdown.showReferenceModal(editor, picked);
 		});
 		return ret;

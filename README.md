@@ -1,13 +1,28 @@
 # Markdown for Craft CMS
 
-### How-to
 Clone this repo into `craft/plugins/markdown` & create a new **Markdown** field.
  
-The field will return an array containing `raw` (the raw markdown) and `parsed` (the parsed markdown as HTML). This means you can use `{{ myMarkdownField.parsed|raw }}` to display the parsed markdown in your template. Remember the `|raw` pipe!
+You can display the field in your templates simply using `{{ entry.myMarkdownField }}`. 
 
-*([Markdown Extra](https://michelf.ca/projects/php-markdown/extra/) is also supported!)*
+**Supports:** 
+
+* [Pagination](https://craftcms.com/docs/rich-text-fields#getPages) *(with `{pagebreak}`)*
+* [Reference Tags](https://craftcms.com/docs/reference-tags)
+* [Markdown Extra](https://michelf.ca/projects/php-markdown/extra/)
 
 ![Markdown Field](resources/imgs/preview.png "Markdown for Craft CMS")
+
+## Changelog
+
+### 1.1.0
+
+* Simplified template output
+* Added pagination support
+* Minified field javascript
+
+### 1.0.0
+
+* Initial release
 
 ---
 Copyright © 2016 [Ether Creative](http://ethercreative.co.uk) <hello@ethercreative.co.uk>
