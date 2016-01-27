@@ -77,7 +77,8 @@
 			linkHref: "string",
 			em: "em",
 			strong: "strong",
-			strikethrough: "strikethrough"
+			strikethrough: "strikethrough",
+			reference: "reference"
 		};
 
 		for (var tokenType in tokenTypes) {
@@ -86,15 +87,14 @@
 			}
 		}
 
-		var hrRE = /^([*\-_])(?:\s*\1){2,}\s*$/
-			,   ulRE = /^[*\-+]\s+/
-			,   olRE = /^[0-9]+([.)])\s+/
-			,   taskListRE = /^\[(x| )\](?=\s)/ // Must follow ulRE or olRE
-			,   atxHeaderRE = modeCfg.allowAtxHeaderWithoutSpace ? /^(#+)/ : /^(#+)(?: |$)/
-			,   setextHeaderRE = /^ *(?:\={1,}|-{1,})\s*$/
-			,   textRE = /^[^#!\[\]*_\\<>` "'(~]+/
-			,   fencedCodeRE = new RegExp("^(" + (modeCfg.fencedCodeBlocks === true ? "~~~+|```+" : modeCfg.fencedCodeBlocks) +
-			")[ \\t]*([\\w+#]*)");
+		var hrRE = /^([*\-_])(?:\s*\1){2,}\s*$/,
+			ulRE = /^[*\-+]\s+/,
+			olRE = /^[0-9]+([.)])\s+/,
+			taskListRE = /^\[(x| )\](?=\s)/, // Must follow ulRE or olRE
+			atxHeaderRE = modeCfg.allowAtxHeaderWithoutSpace ? /^(#+)/ : /^(#+)(?: |$)/,
+			setextHeaderRE = /^ *(?:\={1,}|-{1,})\s*$/,
+			textRE = /^[^#!\[\]\{\}*_\\<>` "'(~]+/,
+			fencedCodeRE = new RegExp("^(" + (modeCfg.fencedCodeBlocks === true ? "~~~+|```+" : modeCfg.fencedCodeBlocks) + ")[ \\t]*([\\w+#]*)");
 
 		function switchInline(stream, state, f) {
 			state.f = state.inline = f;
@@ -107,7 +107,7 @@
 		}
 
 		function lineIsEmpty(line) {
-			return !line || !/\S/.test(line.string)
+			return !line || !/\S/.test(line.string);
 		}
 
 		// Blocks
@@ -115,26 +115,37 @@
 		function blankLine(state) {
 			// Reset linkTitle state
 			state.linkTitle = false;
+
 			// Reset EM state
 			state.em = false;
+
 			// Reset STRONG state
 			state.strong = false;
+
 			// Reset strikethrough state
 			state.strikethrough = false;
+
 			// Reset state.quote
 			state.quote = 0;
+
+			// Reset reference state
+			state.reference = false;
+
 			// Reset state.indentedCode
 			state.indentedCode = false;
 			if (!htmlFound && state.f == htmlBlock) {
 				state.f = inlineNormal;
 				state.block = blockNormal;
 			}
+
 			// Reset state.trailingSpace
 			state.trailingSpace = 0;
 			state.trailingSpaceNewLine = false;
+
 			// Mark this line as blank
-			state.prevLine = state.thisLine
-			state.thisLine = null
+			state.prevLine = state.thisLine;
+			state.thisLine = null;
+
 			return null;
 		}
 
@@ -172,29 +183,36 @@
 				} else {
 					return null;
 				}
+
 			} else if (stream.eatSpace()) {
 				return null;
+
 			} else if ((match = stream.match(atxHeaderRE)) && match[1].length <= 6) {
 				state.header = match[1].length;
 				if (modeCfg.highlightFormatting) state.formatting = "header";
 				state.f = state.inline;
 				return getType(state);
+
 			} else if (!lineIsEmpty(state.prevLine) && !state.quote && !prevLineIsList &&
 				!prevLineIsIndentedCode && (match = stream.match(setextHeaderRE))) {
 				state.header = match[0].charAt(0) == '=' ? 1 : 2;
 				if (modeCfg.highlightFormatting) state.formatting = "header";
 				state.f = state.inline;
 				return getType(state);
+
 			} else if (stream.eat('>')) {
 				state.quote = sol ? 1 : state.quote + 1;
 				if (modeCfg.highlightFormatting) state.formatting = "quote";
 				stream.eatSpace();
 				return getType(state);
+
 			} else if (stream.peek() === '[' && stream.string[1] !== '^') {
 				return switchInline(stream, state, footnoteLink);
+
 			} else if (stream.match(hrRE, true)) {
 				state.hr = true;
 				return tokenTypes.hr;
+
 			} else if ((lineIsEmpty(state.prevLine) || prevLineIsList) && (stream.match(ulRE, false) || stream.match(olRE, false))) {
 				var listType = null;
 				if (stream.match(ulRE, true)) {
@@ -212,8 +230,9 @@
 				state.f = state.inline;
 				if (modeCfg.highlightFormatting) state.formatting = ["list", "list-" + listType];
 				return getType(state);
+
 			} else if (modeCfg.fencedCodeBlocks && (match = stream.match(fencedCodeRE, true))) {
-				state.fencedChars = match[1]
+				state.fencedChars = match[1];
 				// try switching mode
 				state.localMode = getMode(match[2]);
 				if (state.localMode) state.localState = state.localMode.startState();
@@ -308,6 +327,7 @@
 				if (state.strikethrough) { styles.push(tokenTypes.strikethrough); }
 				if (state.linkText) { styles.push(tokenTypes.linkText); }
 				if (state.code) { styles.push(tokenTypes.code); }
+				if (state.reference) { styles.push(tokenTypes.reference); }
 			}
 
 			if (state.header) { styles.push(tokenTypes.header, tokenTypes.header + "-" + state.header); }
@@ -433,6 +453,18 @@
 				stream.match(/\[[^\]]*\]/);
 				state.inline = state.f = linkHref;
 				return tokenTypes.image;
+			}
+
+			if (ch === '{' && stream.match(/.*\}/, false)) {
+				state.reference = true;
+				if (modeCfg.highlightFormatting) state.formatting = "reference";
+				return getType(state);
+			}
+
+			if (ch === '}' && state.reference) {
+				var type = getType(state);
+				state.reference = false;
+				return type;
 			}
 
 			if (ch === '[' && stream.match(/.*\](\(.*\)| ?\[.*\])/, false)) {
