@@ -1,3 +1,5 @@
+![Markdown for Craft CMS](resources/imgs/banner.jpg)
+
 # Markdown for Craft CMS
 
 Clone this repo into `craft/plugins/markdown` & create a new **Markdown** field.
@@ -13,6 +15,14 @@ You can display the field in your templates simply using `{{ entry.myMarkdownFie
 ![Markdown Field](resources/imgs/preview.png "Markdown for Craft CMS")
 
 ## Changelog
+
+### 1.1.2
+
+* Branding!
+
+### 1.1.1
+
+* Added syntax highlighting for references
 
 ### 1.1.0
 

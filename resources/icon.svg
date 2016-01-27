@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 83 82"
+	 style="enable-background:new 0 0 83 82;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#Oval-1_1_);}
+</style>
+<title>icon</title>
+<desc>Created with Sketch.</desc>
+<g id="Page-1" sketch:type="MSPage">
+	<g id="opt-2" transform="translate(-484.000000, -482.000000)" sketch:type="MSLayerGroup">
+		<g id="icon" transform="translate(484.912024, 482.000000)" sketch:type="MSShapeGroup">
+			
+				<linearGradient id="Oval-1_1_" gradientUnits="userSpaceOnUse" x1="-779.0338" y1="-130.0284" x2="-778.3021" y2="-129.0284" gradientTransform="matrix(-82 0 0 82 -63811.5703 10664.2188)">
+				<stop  offset="0" style="stop-color:#D1D3D4"/>
+				<stop  offset="1" style="stop-color:#F1F2F2"/>
+			</linearGradient>
+			<circle id="Oval-1" class="st0" cx="40.6" cy="41" r="41"/>
+		</g>
+	</g>
+</g>
+<g>
+	<path d="M19.9,48.2h-3.8l0.9-4.8h3.8l0.8-4.1h-3.9l0.9-4.8h3.9l1.3-6.5h5.2l-1.3,6.5h3.5l1.3-6.5h5.2l-1.3,6.5h3.8l-0.9,4.8h-3.9
+		l-0.8,4.1h3.9l-0.9,4.8h-3.9l-1.1,5.9h-5.2l1.1-5.9h-3.5L24,54.1h-5.2L19.9,48.2z M26,43.4h3.5l0.8-4.1h-3.5L26,43.4z"/>
+	<path d="M43.8,33.9h4.5v2.8c0,0,1.5-3.2,5.1-3.2c2.4,0,3.7,1.4,4.1,2.9c0.4-0.6,1.8-2.9,4.9-2.9c3.7,0,4.6,3.3,4.6,6.8v13.8h-5.2
+		V40.9c0-1.8-0.5-2.8-1.5-2.8c-1.1,0-2.1,1.1-2.3,1.4v14.6h-5.2V40.9c0-1.9-0.4-2.8-1.4-2.8c-1.4,0-2.3,1.4-2.3,1.4v14.6h-5.2V33.9z
+		"/>
+</g>
+</svg>
