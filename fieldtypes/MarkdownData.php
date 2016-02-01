@@ -49,13 +49,21 @@ class MarkdownData extends \Twig_Markup
 	}
 
 	/**
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return str_replace("{pagebreak}", '', $this->content);
+	}
+
+	/**
 	 * Returns the parsed content, with reference tags returned as HTML links.
 	 *
 	 * @return string
 	 */
 	public function getParsedContent()
 	{
-		return $this->content;
+		return $this->__toString();
 	}
 
 	/**

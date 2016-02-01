@@ -16,6 +16,10 @@ You can display the field in your templates simply using `{{ entry.myMarkdownFie
 
 ## Changelog
 
+### 1.1.3
+
+* Fixed bug where content was returned with `{pagebreak}`'s still visible.
+
 ### 1.1.2
 
 * Branding!
